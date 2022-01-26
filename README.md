@@ -4,7 +4,7 @@ Combo planner for Yu-gi-oh! Trading Card Came, has card search can drag-n-drop c
 # Why this?
  Since the Master duel came out, I got the urge to try hard and be a pro duelist this time. But I sucked and couldn't memorize a single combo except normal summon Aleister.
  
- This shitty web app can do it for me, taking note of of combo and specific way to cycle and get rid of specific annoying opp's cards is nice, i think (especially the f'king *golden retard lord*, or that *p'ssy striker chick*).
+ This shitty web app can do it for me, taking note of of combo and specific way to cycle and get rid of opp's annoying cards is nice, i think (especially the f'king *golden retard lord*, or that *p'ssy striker chick*).
 
  Anyway, since there are numerous deck planner around, not to mention the Master Duel's one itself, i don't want to create one. Nor the combo tester, since I don't know a thing about rulings, maybe you can help me about that? PLease raise an issue or clone the repos,  add that fucntion for me bro.
 
