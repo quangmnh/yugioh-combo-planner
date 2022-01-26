@@ -13,3 +13,15 @@ ME and ME, thank me very much for bringing me comfort, memorizing these shite is
 
 and YOU of course, for choosing to use this shitty app, or if you can add the combo testing function, i will head over and we can have a coffee togheter.
 
+# Project History
+
+## Prototype
+- ~~Do some figma for the views~~
+  https://www.figma.com/file/IX30INQBDdxNTEy1rqgDi3/Untitled?node-id=0%3A1
+  
+- Intitiate the index file
+- Figure out wtf to save in the cache/cookies (combo sets, of course, but what else? card's id? actions?). Also what structure to store?
+- Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**) 
+- Implement the **Combo planner view**
+   + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clone out there, what a joke)
+   + **Combo planning flow**: The main dish ofc, I might need to create some assets myself.
