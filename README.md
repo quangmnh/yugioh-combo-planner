@@ -11,7 +11,7 @@ Combo planner for Yu-gi-oh! Trading Card Came, has card search can drag-n-drop c
 # Credit
 ME and ME, thank me very much for bringing me comfort, memorizing these shite is suck a dick move, how do I even do that if I can't even memorize my homework???
 
-and YOU of course, for choosing to use this shitty app, or if you can add the combo testing function, i will head over and we can have a coffee togheter.
+and YOU of course, for choosing to use this shitty app, or if you can add the combo testing function, i will head over and we can have a coffee together.
 
 # Project History
 
