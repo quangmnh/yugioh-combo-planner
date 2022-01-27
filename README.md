@@ -25,6 +25,7 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
    + ~~Where to store~~: At first glance, I considered using cookies but 5KB is like a joke for some fking long string of combo (For real, how tf to store spellbook combo??). Then HTML5 web storage is a solid choice here with 5MB. It should be enough.
    + ~~Combo string~~: action list, simplified ["activate", "negate", "increase", "decrease", "change position", "change collumn", "destroy", "banish", "flip face up", "flip face down", "special summon", "normal summon", "special summon", "tribute", "ritual summon", "synchro summon", "link summon", "xyz summon", "fusion summon", "set", "dice roll", "flip coin", "attack", "chain","excavate", "search", "discard", "choose"].
    +  ~~JSON structure~~: 
+```
 {
   "decks":[{
     "name": "abcxyz",
@@ -43,6 +44,7 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
     ]
   }]
 }
+```
 - Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**) 
 - Implement the **Combo planner view**
    + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clone out there, what a joke)
