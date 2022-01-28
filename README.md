@@ -47,7 +47,6 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
 ```
   + ~~Card state (following master duel's icon) : hand, field, graveyard, banish~~
   + ~~Card state (me adding more for representation): facedown~~
-  + 
 - Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**) 
 - Implement the **Combo planner view**
    + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clone out there, what a joke)
