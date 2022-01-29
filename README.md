@@ -27,26 +27,27 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
    +  ~~Sample JSON structure~~: 
 ```
 {
-  "decks":[{
-    "name": "abcxyz",
-    "date-created": "30/12/2021",
-    "date-modified": "31/12/2021",
-    "combo-list":[{
-      "combo-name":"xxxxsuckyyydick",
-      "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-      "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-      },
-      {
-      "combo-name":"xxxxsuckyyydick",
-      "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-      "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-      }
-    ]
-  }]
+   "decks":[{
+   "name": "abcxyz",
+   "date_created": "30/12/2021",
+   "date_modified": "31/12/2021",
+   "combo_list":[{
+       "combo_name":"xxxxsuckyyydick",
+       "combo":["16162312133?faceup-atk-field","attack","1561656123?facedown-def-field","|","6511233331?hand","activate"],
+       "result":["16162312133?graveyard", "6511233331?graveyard"]
+       },
+       {
+       "combo_name":"xxxxsuckyyydick",
+       "combo":["16162312133?faceup-atk-field","attack","1561656123?facedown-def-field","|","6511233331?hand","activate"],
+       "result":["16162312133?graveyard", "6511233331?graveyard"]
+       }
+   ]
+   }]
 }
 ```
   + ~~Card state (following master duel's icon) : hand, field, graveyard, banish~~
   + ~~Card state (me adding more for representation): facedown~~
+- ~~Implement webstorage functions: JS maybe?~~
 - Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**) 
 - Implement the **Combo planner view**
    + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clone out there, what a joke)
