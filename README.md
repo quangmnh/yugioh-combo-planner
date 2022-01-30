@@ -50,7 +50,7 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
   + ~~Card state (me adding more for representation): facedown~~
 - ~~Implement webstorage functions: JS maybe?~~
 - ~~Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**)~~: Workable, not even reach prototype phase yet, might amend it later in the future.
-![Preview](/assets/combolist_preview.png=1600x900)
+![Preview](/assets/combolist_preview.png =1600x900)
 - Implement the **Combo planner view**
    + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clones out there, what a joke)
    + **Combo planning flow**: The main dish ofc, ~~I might need to create some assets myself~~.
