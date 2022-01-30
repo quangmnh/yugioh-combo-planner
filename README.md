@@ -1,5 +1,5 @@
 # Yu-gi-oh Combo Planner
-Combo planner for Yu-gi-oh! Trading Card Came, has a card search we can drag-n-drop cards for saving combo, ~~into the browser cache maybe, haven't even started the project yet~~.
+Combo planner for Yu-gi-oh! Trading Card Came, has a card search we can drag-n-drop cards for saving combo, ~~into the browser cache maybe~~ HTML5 webstorage, ~~haven't even started the project yet~~ project ongoing right now, seems good enough.
 Test the webapp at https://quangmnh.github.io/yugioh-combo-planner/
 
 # Why this?
