@@ -61,138 +61,141 @@ function addComboList(name){
     location.reload();
 }
 
-res = getList("deck_list");
-if (!res){
-    temp = {
-        "decks": [
-            {
-                "combo_name":"xxxxsuckyyydick",
-                "combo":["16162312133?faceup-atk-field","attack","1561656123?facedown-def-field","|","6511233331?hand","activate"],
-                "result":["16162312133?graveyard", "6511233331?graveyard"]
-                }
-        ]
-    };
-    storeList("deck_list", temp);
+function comboListPageStartup(){
     res = getList("deck_list");
+    if (!res){
+        temp = {
+            "decks": [
+                {
+                    "combo_name":"xxxxsuckyyydick",
+                    "combo":["16162312133?faceup-atk-field","attack","1561656123?facedown-def-field","|","6511233331?hand","activate"],
+                    "result":["16162312133?graveyard", "6511233331?graveyard"]
+                    }
+            ]
+        };
+        storeList("deck_list", temp);
+        res = getList("deck_list");
+    }
+    // temp = {
+    //     "decks": [
+    //         {
+    //             "name": "abcxyz",
+    //             "date-created": "30/12/2021",
+    //             "date-modified": "31/12/2021",
+    //             "combo-list":[{
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             },
+    //             {
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             }
+    //             ]
+    //         },
+    //         {
+    //             "name": "abcxyz",
+    //             "date-created": "30/12/2021",
+    //             "date-modified": "31/12/2021",
+    //             "combo-list":[{
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             },
+    //             {
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             }
+    //             ]
+    //         },
+    //         {
+    //             "name": "abcxyz",
+    //             "date-created": "30/12/2021",
+    //             "date-modified": "31/12/2021",
+    //             "combo-list":[{
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             },
+    //             {
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             }
+    //             ]
+    //         },
+    //         {
+    //             "name": "abcxyz",
+    //             "date-created": "30/12/2021",
+    //             "date-modified": "31/12/2021",
+    //             "combo-list":[{
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             },
+    //             {
+    //             "combo-name":"xxxxsuckyyydick",
+    //             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
+    //             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
+    //             }
+    //             ]
+    //         }
+    //     ]
+    // };
+    // storeList("deck_list", temp);
+    res = getList("deck_list");
+    /* <div class="row">
+        <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
+        <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
+        <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
+        <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
+    </div> */
+    i = 0;
+    // test_div = document.getElementsByClassName("test_place")[0];
+    res.decks.forEach(element => {
+        // test_div.innerHTML=i/4;
+        if (i%4 == 0){
+            grid_container = document.getElementsByClassName("container-combo-lists")[0];
+            var new_row = document.createElement('div');
+            new_row.className  = "row row" + Math.floor(i/4);
+            new_row.setAttribute("style","margin-bottom:15px;")
+            grid_container.appendChild(new_row);
+        }
+        if (res.decks[i]){
+            row = document.getElementsByClassName('row row' + Math.floor(i/4))[0];
+            big_col = document.createElement('div');
+            medium_col = document.createElement('div');
+            big_col.setAttribute("class", "col-3");
+            medium_col.setAttribute("class", "col-12");
+            big_col.appendChild(medium_col);
+            
+            
+            // What to do with the cell?
+            small_col = document.createElement('div');
+            small_col.setAttribute("class", "col cell-combo-list");
+            small_col.innerHTML = res.decks[i].name;
+            // <button onclick="myFunction()">Click me</button>
+            delete_button = document.createElement('button');
+            delete_button.setAttribute("onclick", "deleteComboList(this.getAttribute('value'))");
+            // delete_button.innerHTML = "Delete";
+            delete_button.setAttribute("value", i);
+            delete_button.setAttribute("class", "btn btn-danger btn-sm float-right");
+            // delete_button.setAttribute("style","float: right;");
+            del_icon = document.createElement('i');
+            del_icon.setAttribute("class","fa fa-trash");
+            delete_button.appendChild(del_icon);
+
+
+
+            small_col.appendChild(delete_button)
+            small_col.appendChild
+            medium_col.appendChild(small_col);
+            row.appendChild(big_col);
+        }
+        i+=1;
+    });
+
+
 }
-// temp = {
-//     "decks": [
-//         {
-//             "name": "abcxyz",
-//             "date-created": "30/12/2021",
-//             "date-modified": "31/12/2021",
-//             "combo-list":[{
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             },
-//             {
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             }
-//             ]
-//         },
-//         {
-//             "name": "abcxyz",
-//             "date-created": "30/12/2021",
-//             "date-modified": "31/12/2021",
-//             "combo-list":[{
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             },
-//             {
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             }
-//             ]
-//         },
-//         {
-//             "name": "abcxyz",
-//             "date-created": "30/12/2021",
-//             "date-modified": "31/12/2021",
-//             "combo-list":[{
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             },
-//             {
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             }
-//             ]
-//         },
-//         {
-//             "name": "abcxyz",
-//             "date-created": "30/12/2021",
-//             "date-modified": "31/12/2021",
-//             "combo-list":[{
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             },
-//             {
-//             "combo-name":"xxxxsuckyyydick",
-//             "combo":["16162312133<faceup,atk,field>","attack","1561656123<facedown,def,field","|","6511233331<hand>","activate"],
-//             "result":["16162312133<graveyard>", "6511233331<graveyard>"]
-//             }
-//             ]
-//         }
-//     ]
-// };
-// storeList("deck_list", temp);
-res = getList("deck_list");
-/* <div class="row">
-    <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
-    <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
-    <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
-    <div class="col"><div class="col"><div class="col-4 cell-combo-list">col</div></div></div>
-</div> */
-i = 0;
-// test_div = document.getElementsByClassName("test_place")[0];
-res.decks.forEach(element => {
-    // test_div.innerHTML=i/4;
-    if (i%4 == 0){
-        grid_container = document.getElementsByClassName("container-combo-lists")[0];
-        var new_row = document.createElement('div');
-        new_row.className  = "row row" + Math.floor(i/4);
-        new_row.setAttribute("style","margin-bottom:15px;")
-        grid_container.appendChild(new_row);
-    }
-    if (res.decks[i]){
-        row = document.getElementsByClassName('row row' + Math.floor(i/4))[0];
-        big_col = document.createElement('div');
-        medium_col = document.createElement('div');
-        big_col.setAttribute("class", "col-3");
-        medium_col.setAttribute("class", "col-12");
-        big_col.appendChild(medium_col);
-        
-        
-        // What to do with the cell?
-        small_col = document.createElement('div');
-        small_col.setAttribute("class", "col cell-combo-list");
-        small_col.innerHTML = res.decks[i].name;
-        // <button onclick="myFunction()">Click me</button>
-        delete_button = document.createElement('button');
-        delete_button.setAttribute("onclick", "deleteComboList(this.getAttribute('value'))");
-        // delete_button.innerHTML = "Delete";
-        delete_button.setAttribute("value", i);
-        delete_button.setAttribute("class", "btn btn-danger btn-sm float-right");
-        // delete_button.setAttribute("style","float: right;");
-        del_icon = document.createElement('i');
-        del_icon.setAttribute("class","fa fa-trash");
-        delete_button.appendChild(del_icon);
-
-
-
-        small_col.appendChild(delete_button)
-        small_col.appendChild
-        medium_col.appendChild(small_col);
-        row.appendChild(big_col);
-    }
-    i+=1;
-});
-
