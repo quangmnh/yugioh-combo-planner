@@ -61,6 +61,68 @@ function addComboList(name){
     location.reload();
 }
 
+function openComboPlanner(id){
+    new_window = window.open("combo-planner.html?id="+id);
+    // new_window.document.getElementsByClassName("test_place")[0].innerHTML = id;
+    // new_window.document.getElementsByClassName("hidden-value")[0].innerHTML = id;
+    // new_window.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+    new_window.ivalue = i;
+}
+
+function showBigCard(element){
+    res = JSON.parse(element);
+    show_place = document.getElementsByClassName("card-show")[0];
+    show_place.innerHTML = '';
+
+    header = document.createElement('h1');
+    header.innerHTML = res.name;
+    header.id = 'card-title';
+
+    big_img = document.createElement('img');
+    big_img.setAttribute('src', res.card_images[0].image_url);
+    big_img.setAttribute('alt', res.name);
+    big_img.setAttribute('width', "40%");
+    big_img.setAttribute('margin-top', "10px");
+    // big_img.setAttribute('style', 'float:left;');
+    
+    attr = document.createElement('img')
+    attr_src = "";
+    if (res.type == "Trap Card") attr_src = "assets/attribute/TRAP.png";
+    else if (res.type == "Spell Card") attr_src = "assets/attribute/SPELL.png";
+    else if (res.type.split(' ').slice(-1)[0] == "Monster"){
+        attr_src = "assets/attribute/" + res.attribute + ".png";
+    }
+    console.log(res.type.split(' ').slice(-1)[0]);
+    attr.setAttribute('src', attr_src);
+    attr.setAttribute('alt', res.name);
+    attr.setAttribute('width', "20%");
+    attr.setAttribute('style', 'float:right;');
+
+
+    des = document.createElement('p');
+    des.innerHTML = res.desc;
+
+    show_place.appendChild(attr);
+    show_place.appendChild(header);
+    show_place.appendChild(big_img);
+    show_place.appendChild(des);
+    
+    scale_text = Math.round(($("h1").width()*res.name.length)/show_place.offsetWidth);
+    console.log(scale_text);
+
+    document.getElementById("card-title").animate([
+        // keyframes
+        { transform: 'translateX(0%)' }, 
+        { transform: 'translateX(-'+ scale_text +'%)' }
+      ], { 
+        // timing options
+        duration: 3000,
+        iterations: Infinity
+      });
+
+}
+
+
 function comboListPageStartup(){
     res = getList("deck_list");
     if (!res){
@@ -175,6 +237,8 @@ function comboListPageStartup(){
             // What to do with the cell?
             small_col = document.createElement('div');
             small_col.setAttribute("class", "col cell-combo-list");
+            small_col.setAttribute("data-value", i);
+            small_col.setAttribute("onclick", "openComboPlanner(this.getAttribute('data-value'))");
             small_col.innerHTML = res.decks[i].name;
             // <button onclick="myFunction()">Click me</button>
             delete_button = document.createElement('button');
