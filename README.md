@@ -1,5 +1,6 @@
 # Yu-gi-oh Combo Planner
-Combo planner for Yu-gi-oh! Trading Card Came, has card search can drag-n-drop cards for saving combo, into the browser cache maybe, haven't even started the project yet.
+Combo planner for Yu-gi-oh! Trading Card Came, has a card search we can drag-n-drop cards for saving combo, ~~into the browser cache maybe~~ HTML5 webstorage, ~~haven't even started the project yet~~ project ongoing right now, seems good enough.
+Test the webapp at https://quangmnh.github.io/yugioh-combo-planner/
 
 # Why this?
  Since Master Duel came out, I got the urge to try hard and be a pro duelist this time. But I sucked and couldn't memorize a single combo except normal summon Aleister.
@@ -48,7 +49,7 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
   + ~~Card state (following master duel's icon) : hand, field, graveyard, banish~~
   + ~~Card state (me adding more for representation): facedown~~
 - ~~Implement webstorage functions: JS maybe?~~
-- Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**) 
+- ~~Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**)~~: Workable, not even reach prototype phase yet, might amend it later in the future.
 - Implement the **Combo planner view**
    + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clone out there, what a joke)
    + **Combo planning flow**: The main dish ofc, ~~I might need to create some assets myself~~.
