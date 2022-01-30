@@ -1,5 +1,6 @@
 # Yu-gi-oh Combo Planner
 Combo planner for Yu-gi-oh! Trading Card Came, has card search can drag-n-drop cards for saving combo, into the browser cache maybe, haven't even started the project yet.
+Test the webapp at https://quangmnh.github.io/yugioh-combo-planner/
 
 # Why this?
  Since Master Duel came out, I got the urge to try hard and be a pro duelist this time. But I sucked and couldn't memorize a single combo except normal summon Aleister.
