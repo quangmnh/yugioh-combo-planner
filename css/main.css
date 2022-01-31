@@ -6,9 +6,9 @@
 
 .planner-container{
   position: absolute;
-  width: 80%;
-  min-height: 80;
-  height: 80;
+  width: 80vh;
+  min-height: 80vh;
+  height: 80vh;
   margin: 0 auto;
 }
 /* Style buttons */
@@ -46,13 +46,100 @@
     overflow-y: auto;
   }
 
+  .title-col{
+    border-style: dashed;
+    overflow: hidden;
+    /* height: vh; */
+  }
+  .attr-col{
+    height: 5vh;
+  }
+  .title-row{
+    height: 5vh;
+  }
+
+  .detail-icon{
+    width: 3vh; 
+  }
+
+  .row-type{
+    margin-left: 1vh;
+    margin-right: 1vh;
+    font-size: 3vh;
+    background-color: brown;
+  }
+
+  .combo-row{
+    min-height: 12vh;
+    background-color: cadetblue;
+    margin-top: 2vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    flex-wrap: wrap;
+  }
+
+  .search-results{
+    width: 45%;
+    float:left; 
+    margin-right:5%; 
+    margin-top:5%
+  }
+  
+  .combp-wrap{
+    background-color: cyan;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+  .combo_imgs{
+    height: 10vh;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 3vh;
+    margin-left: 3vh;
+  }
+
+  #card-detail{
+    height: 25vh;
+  }
+
+  #card-desc{
+    font-size: 2vh;
+  }
+
+  #big-img{
+    margin:5%;
+  }
+
+  #detail-row-1{
+    margin-top:15%
+  }
+
+  #detail-row-1,#detail-row-2,#detail-row-3,#detail-row-4{
+    margin-bottom: 10%;
+    height: 10%;
+  }
+
+  #detail-row-1-col-1,
+  #detail-row-1-col-2,
+  #detail-row-2-col-1,
+  #detail-row-2-col-2,
+  #detail-row-3-col-1,
+  #detail-row-3-col-2,
+  #detail-row-4-col-1,
+  #detail-row-4-col-2{
+    font-size: 2.5vh;
+  }
+
+  #detail-row-1-col-2,#detail-row-2-col-2,#detail-row-3-col-2,#detail-row-4-col-2{
+    text-align: right;
+  }
+  
 
   #card-title {
-    /* animation: move 3s infinite; */
-    /* text-overflow: hidden; */
+    max-width: 100%;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    /* animation-fill-mode: both; */
+    /* overflow: hidden; */
+    /* text-overflow: hidden; */
     animation-delay: 1.5s;
   }
   

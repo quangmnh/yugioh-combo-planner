@@ -41,8 +41,65 @@
     <div class = "xxx-container"> 
         <div class="row">
             <div class="col-3 card-show scroll-collumn">
+                <div class="row tittle-row">
+                    <div class="col-9 title-col">
+                        <h1 id="card-title"></h1>
+                    </div>
+                    <div class="col-3 attr-col">
+                        <img src="" id = "attr-img" alt="" height="100%" style="float:right;">
+                    </div>
+                </div>
+                <div id="card-detail" class="row">
+                    <div class="col-5">
+                        <img src="" id ="big-img" alt="" width="95%">
+                    </div>
+                    <div class="col-7">
+                        <div class = "row" id ="detail-row-1">
+                            <div class = "col-4" id = "detail-row-1-col-1">
+                           
+                            </div>
+                            <div class = "col-8" id = "detail-row-1-col-2">
+                               
+                            </div>
+                        </div>    
+                        <div class = "row" id ="detail-row-2">
+                            <div class = "col-6" id = "detail-row-2-col-1">
+                             
+                            </div>
+                            <div class = "col-6" id = "detail-row-2-col-2">
+                           
+                            </div>
+                        </div>        
+                        <div class = "row" id ="detail-row-3">
+                            <div class = "col-6" id = "detail-row-3-col-1">
+                               
+                            </div>
+                            <div class = "col-6" id = "detail-row-3-col-2">
+                                   
+                            </div>
+                        </div>                  
+                        <div class = "row" id ="detail-row-4">
+                            <div class = "col-6" id = "detail-row-4-col-1">
+                               
+                            </div>
+                            <div class = "col-6" id = "detail-row-4-col-2">
+                             
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="row row-type">
+                    
+                </div>
+                <p id="card-desc"></p>
             </div>
             <div class="col-7 combos scroll-collumn">
+                <div class="combp-wrap" id = "wrap1">
+                    <div class="combo-note" id = "note1" contenteditable="true">Combo 1</div>
+                    <div class="row combo-row" data-combo-number = "1" id = "combo1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div>
+
             </div>
             <div class="col-2 card-search scroll-collumn">
                 <br>
@@ -54,7 +111,6 @@
                 </div>
                 <div class="card-result"></div>
                 <script>
- 
                     $('#input').keypress(function (e) {
                         if (e.which == 13) {
                             const form = document.getElementById('form')
@@ -71,10 +127,13 @@
                                     // element.card_images[0].image_url
                                     new_img = document.createElement('img');
                                     new_img.setAttribute('src', element.card_images[0].image_url);
+                                    new_img.setAttribute('id', element.id);
                                     new_img.setAttribute('alt', element.name);
                                     new_img.setAttribute('data-card', JSON.stringify(element))
-                                    new_img.setAttribute('width', "45%");
-                                    new_img.setAttribute('style', 'float:left; margin-right:5%; margin-top:5%');
+                                    new_img.setAttribute('data-type',"card");
+                                    new_img.setAttribute('class', "search-results");
+                                    new_img.setAttribute('draggable', "true");
+                                    new_img.setAttribute('ondragstart', "drag(event)");
                                     new_img.setAttribute('onclick',"showBigCard(this.getAttribute('data-card'))");
                                     cards_list.appendChild(new_img);
                                 });
@@ -82,16 +141,6 @@
                             return false;  
                         }
                     });
-
-                    function mysearch(){
-                        myurl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=" + input.value;
-                        // window.open("https://www.google.com/search?q="+myurl);
-                        // console.log(input.value);
-                        $.getJSON(myurl, function(data) {
-                            document.getElementsByClassName("test_place")[0].innerHTML="i camejasdnnsakjdsadnajsdk";
-                        });
-                    }
-
                     
                 </script>
                 <br>
@@ -105,11 +154,7 @@
 <!-- </div> -->
 
     <script src="js/main.js"></script>
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        list_id = parseInt(params.get('id'));
-        res = getList("deck_list");
-    </script>
+    
     <!-- <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
