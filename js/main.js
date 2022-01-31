@@ -283,9 +283,13 @@ function allowDrop(ev) {
         smaller_img.setAttribute('class', "combo_imgs");
         wrapper.setAttribute("data-type", "card-wrapper");
         wrapper.appendChild(smaller_img);
-        // gonna implement the drop function of card state here
+
+        combo_id = parseInt(ev.target.getAttribute("data-combo-number"));
+
+        //gonna set the combo  div's id the combo number 
+        //gonna implement the drop function of card state here
         //gonna update the combo right away.
-        // add new drag event: cut the element
+        //add new drag event: cut the element
     } 
     else if (smaller_img.getAttribute("data-type")=="action"){
         wrapper.setAttribute("data-type", "action-wrapper");
@@ -293,6 +297,13 @@ function allowDrop(ev) {
     }
 
     ev.target.appendChild(wrapper);
+
+
+    // save to storage here
+    if (smaller_img.getAttribute("data-type")=="card"){
+        all_actions = document.querySelectorAll("#"+ev.target.id+">.combo-action-wrapper");
+        console.log(all_actions[0].children[0].src);
+    }
   }
 function comboListPageStartup(){
     res = getList("deck_list");
