@@ -52,5 +52,5 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
 - ~~Implement the **Deck select / Create** (we aren't going to make a deck planner, this is actually **Combos sets Select / Create**)~~: Workable, not even reach prototype phase yet, might amend it later in the future.
 <!-- <img src="/assets/combolist_preview.png" width="686" height="346"> -->
 - Implement the **Combo planner view**
-   + **Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clones out there, what a joke)
+   + ~~**Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clones out there, what a joke)~~ Working version, gonna improve later.
    + **Combo planning flow**: The main dish ofc, ~~I might need to create some assets myself~~.
