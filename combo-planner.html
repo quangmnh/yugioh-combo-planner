@@ -94,11 +94,35 @@
                 <p id="card-desc"></p>
             </div>
             <div class="col-7 combos scroll-collumn">
-                <div class="combp-wrap" id = "wrap1">
-                    <div class="combo-note" id = "note1" contenteditable="true">Combo 1</div>
-                    <div class="row combo-row" data-combo-number = "1" id = "combo1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#newComboListModal">Add a new Combo List</button>
+                <div class="modal fade" id="newComboListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New Combo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="lname">Combo name:</label>
+                            <input type="text" id="lname" name="lname"><br><br>
+                            <label for="lnote">Combo note:</label>
+                            <input type="text" id="lnote" name="lnote"><br><br>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="addCombo(document.getElementById('lname').value,document.getElementById('lnote').value)">Save changes</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
+                <!-- <div class="combo-wrap" id = "wrap1">
+                    <div class="combo-name" id = "combo-name1" contenteditable="true">Combo 1</div>
+                    <div class="combo-note" id = "note1" contenteditable="true">I suck ur dick, u surrender, good deal?</div>                    
+                    <div class="row combo-row" data-combo-number = "1" id = "combo1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    </div>
+                </div> -->
 
             </div>
             <div class="col-2 card-search scroll-collumn">
@@ -109,6 +133,48 @@
                     </form>
                 
                 </div>
+<div class="dropdown">
+    <button class="dropbtn">Dropdown</button>
+    <div class="dropdown-content">
+        <div id = "action-wrapper-sample" class="combo-action-wrapper"ondragstart = "drag(event)" draggable ="true" data-type="action-wrapper"><p class="action-text" contenteditable="true">Sample text</p></div>
+        
+
+        <img class = "card-states" src="assets/opp/banish_opp.png" id = "banish_opp" data-type = "state" data-card ="banish_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/deck_opp.png" id = "deck_opp" data-type = "state" data-card ="deck_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/extra_opp.png" id = "extra_opp" data-type = "state" data-card ="extra_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_monster_1_opp.png" id = "field_monster_1_opp" data-type = "state" data-card ="field_monster_1_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_monster_2_opp.png" id = "field_monster_2_opp" data-type = "state" data-card ="field_monster_2_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_monster_3_opp.png" id = "field_monster_3_opp" data-type = "state" data-card ="field_monster_3_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_monster_4_opp.png" id = "field_monster_4_opp" data-type = "state" data-card ="field_monster_4_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_monster_5_opp.png" id = "field_monster_5_opp" data-type = "state" data-card ="field_monster_5_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_spell_1_opp.png" id = "field_spell_1_opp" data-type = "state" data-card ="field_spell_1_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_spell_2_opp.png" id = "field_spell_2_opp" data-type = "state" data-card ="field_spell_2_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_spell_3_opp.png" id = "field_spell_3_opp" data-type = "state" data-card ="field_spell_3_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_spell_4_opp.png" id = "field_spell_4_opp" data-type = "state" data-card ="field_spell_4_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_spell_5_opp.png" id = "field_spell_5_opp" data-type = "state" data-card ="field_spell_5_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/field_spell_opp.png" id = "field_spell_opp" data-type = "state" data-card ="field_spell_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/graveyard_opp.png" id = "" data-type = "state" data-card ="graveyard_opp" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/opp/hand_opp.png" id = "hand_opp" data-type = "state" data-card ="hand_opp" ondragstart = "drag(event)" draggable ="true">
+        
+        <img class = "card-states" src="assets/player/banish.png" id = "banish" data-type = "state" data-card ="banish" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/deck.png" id = "deck" data-type = "state" data-card ="deck" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/extra.png" id = "extra" data-type = "state" data-card ="extra" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_monster_1.png" id = "field_monster_1" data-type = "state" data-card ="field_monster_1" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_monster_2.png" id = "field_monster_2" data-type = "state" data-card ="field_monster_2" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_monster_3.png" id = "field_monster_3" data-type = "state" data-card ="field_monster_3" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_monster_4.png" id = "field_monster_4" data-type = "state" data-card ="field_monster_4" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_monster_5.png" id = "field_monster_5" data-type = "state" data-card ="field_monster_5" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_spell_1.png" id = "field_spell_1" data-type = "state" data-card ="field_spell_1" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_spell_2.png" id = "field_spell_2" data-type = "state" data-card ="field_spell_2" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_spell_3.png" id = "field_spell_3" data-type = "state" data-card ="field_spell_3" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_spell_4.png" id = "field_spell_4" data-type = "state" data-card ="field_spell_4" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_spell_5.png" id = "field_spell_5" data-type = "state" data-card ="field_spell_5" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/field_spell.png" id = "field_spell" data-type = "state" data-card ="field_spell" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/graveyard.png" id = "" data-type = "state" data-card ="graveyard" ondragstart = "drag(event)" draggable ="true">
+        <img class = "card-states" src="assets/player/hand.png" id = "hand" data-type = "state" data-card ="hand" ondragstart = "drag(event)" draggable ="true">
+
+    </div>
+</div>
                 <div class="card-result"></div>
                 <script>
                     $('#input').keypress(function (e) {
@@ -154,7 +220,7 @@
 <!-- </div> -->
 
     <script src="js/main.js"></script>
-    
+    <script>comboShow()</script>
     <!-- <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

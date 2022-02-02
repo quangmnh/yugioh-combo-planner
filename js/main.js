@@ -6,6 +6,7 @@
 //     "date_modified": "31/12/2021",
 //     "combo_list":[{
 //         "combo_name":"xxxxsuckyyydick",
+//         "combo_note":"sssssss", 
 //         "combo":["16162312133?faceup-atk-field","attack","1561656123?facedown-def-field","|","6511233331?hand","activate"],
 //         "result":["16162312133?graveyard", "6511233331?graveyard"]
 //         },
@@ -26,6 +27,148 @@ function getList(name){
     var retrieveList = localStorage.getItem(name);
     return JSON.parse(retrieveList);
 }
+random_card = {};
+function get_card_info(id){
+    myurl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + id;
+    $.getJSON(myurl, function(data) {
+        // document.getElementsByClassName("test_place")[0].innerHTML=data.data;
+        cards_list = document.getElementsByClassName('card-result')[0];
+        cards_list.innerHTML ='';
+        random_card = data.data[0];
+    });
+    return random_card;
+}
+
+function addCombo(name, note){
+    
+    deck_id = getDeckID(); 
+    res = getList("deck_list");
+    console.log(res.decks[deck_id].combo_list)
+    console.log("im here");
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    new_combo = {
+        "combo_name": name,
+        "combo_note": note,
+        "combo": [],
+        "result":[]
+    }
+
+    res.decks[deck_id].date_modified = dateTime;
+    res.decks[deck_id].combo_list.push(new_combo);
+    storeList("deck_list", res);
+    location.reload();
+}
+
+function comboShow(){
+// <div class="col-7 combos scroll-collumn">
+//     <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#newComboListModal">Add a new Combo List</button>
+    
+//     <div class="combo-wrap" id = "wrap1">
+//         <div class="combo-name" id = "combo-name1" contenteditable="true">Combo 1</div>
+//         <div class="combo-note" id = "note1" contenteditable="true">I suck ur dick, u surrender, good deal?</div>                    
+//         <div class="row combo-row" data-combo-number = "1" id = "combo1" ondrop="drop(event)" ondragover="allowDrop(event)">
+//         </div>
+//     </div>
+
+// </div>  
+
+    deck_id = getDeckID();    
+    res = getList("deck_list");
+    i = res.decks[deck_id].combo_list.length-1;
+    res.decks[deck_id].combo_list.forEach(element=>{
+        combo_wrap = document.createElement('div');
+        combo_wrap.setAttribute("class", "combo-wrap");
+        combo_wrap.setAttribute("id", "wrap"+i);
+        
+        combo_name = document.createElement('div');
+        combo_name.setAttribute("class", "combo-name");
+        combo_name.setAttribute("id", "combo-name"+i);
+        combo_name.setAttribute("contenteditable", "true");
+        combo_name.innerHTML = res.decks[deck_id].combo_list[i].combo_name;
+
+        combo_note = document.createElement('div');
+        combo_note.setAttribute("class", "combo-note");
+        combo_note.setAttribute("id", "note"+i);
+        combo_note.setAttribute("contenteditable", "true");
+        combo_note.innerHTML = res.decks[deck_id].combo_list[i].combo_note;
+
+        combo_row = document.createElement('div');
+        combo_row.setAttribute("class", "row combo-row");
+        combo_row.setAttribute("id", "combo"+i);
+        combo_row.setAttribute("data-combo-number", i);
+        combo_row.setAttribute("ondrop", "drop(event)");
+        combo_row.setAttribute("ondragover", "allowDrop(event)");
+
+        
+        
+
+        res.decks[deck_id].combo_list[i].combo.forEach(el=>{
+            // div class="combo-action-wrapper" oncontextmenu="this.remove();return false;" data-type="card-wrapper" ondrop="drop(event)" ondragover="allowDrop(event)"
+            combo_action_wrapper = document.createElement('div');
+            combo_action_wrapper.setAttribute("class", "combo-action-wrapper");
+            combo_action_wrapper.setAttribute("oncontextmenu", "this.remove();return false;");
+            combo_action_wrapper.setAttribute("data-type", "card-wrapper");
+            combo_action_wrapper.setAttribute("ondrop", "drop(event)");
+            combo_action_wrapper.setAttribute("ondragover", "allowDrop(event)");
+
+            if (el.includes("?")){
+                parsed = cardStateParser(el);
+                card = get_card_info(parsed["id"]);
+
+                new_img = document.createElement('img');
+                new_img.setAttribute('src', card.card_images[0].image_url);
+                new_img.setAttribute('id', card["id"]);
+                new_img.setAttribute('alt', card.name);
+                new_img.setAttribute('data-card', JSON.stringify(card))
+                new_img.setAttribute('data-type',"card");
+                new_img.setAttribute('class', "combo_imgs");
+                new_img.setAttribute('draggable', "true");
+                new_img.setAttribute('ondragstart', "drag(event)");
+                new_img.setAttribute('onclick', "showBigCard(this.getAttribute('data-card'))");
+                new_img.setAttribute('oncontextmenu', "removeRow(this);return false;");
+
+                combo_action_wrapper.appendChild(new_img);
+                parsed["states"].forEach(e=>{
+                    new_state = document.createElement('img');
+                    new_state.setAttribute('src', "assets/opp/" + e + ".png");
+                    new_state.setAttribute('id', e);
+                    new_state.setAttribute('alt', card.name);
+                    new_state.setAttribute('class', "card-states");
+                    new_state.setAttribute('data-card', e)
+                    new_state.setAttribute('data-type',"state");
+                    new_state.setAttribute('draggable', "true");
+                    new_state.setAttribute('ondragstart', "drag(event)");
+                    // new_state.setAttribute('onclick', "showBigCard(this.getAttribute('data-card'))");
+                    new_state.setAttribute('oncontextmenu', "removeRow(this);return false;");
+                    combo_action_wrapper.appendChild(new_state);
+                });
+            }
+            else if (el!="|"){
+                combo_action_wrapper.setAttribute("data-type", "action-wrapper");
+                combo_action_wrapper.setAttribute("id", "action-wrapper-sample");
+
+                passage = document.createElement('p');
+                passage.setAttribute("class", "action-text");
+                passage.setAttribute("contenteditable", "true");
+                passage.innerHTML = el;
+                combo_action_wrapper.appendChild(passage);
+            }
+            combo_action_wrapper.setAttribute("data-combo-number", i);
+            combo_row.appendChild(combo_action_wrapper);
+            
+        });
+        combo_wrap.appendChild(combo_name);
+        combo_wrap.appendChild(combo_note);
+        combo_wrap.appendChild(combo_row);
+        document.getElementsByClassName("combos")[0].appendChild(combo_wrap);
+        i--;
+    });
+
+}
 
 function getDeckID(){
     const params = new URLSearchParams(window.location.search);
@@ -37,6 +180,7 @@ function cardStateParser(card_state){
         "id" : card_states[0],
         "states": card_states[1].split('-')
     }
+    return card;
 }
 
 function deleteComboList(comboNumber){
@@ -264,17 +408,19 @@ function allowDrop(ev) {
     ev.preventDefault();
   }
   
-  function drag(ev) {
+function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
   }
   
-  function drop(ev) {
+function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     img_src = document.getElementById(data);
     smaller_img = img_src.cloneNode(true);
     smaller_img.setAttribute("oncontextmenu", "removeRow(this);return false;");
-
+    
+    combo_id = parseInt(ev.target.getAttribute("data-combo-number"));
+    smaller_img.setAttribute("data-combo-number", combo_id);
     wrapper =document.createElement('div');
     wrapper.setAttribute("class", "combo-action-wrapper");
     wrapper.setAttribute("oncontextmenu", "this.remove();return false;");
@@ -283,28 +429,75 @@ function allowDrop(ev) {
         smaller_img.setAttribute('class', "combo_imgs");
         wrapper.setAttribute("data-type", "card-wrapper");
         wrapper.appendChild(smaller_img);
+        wrapper.setAttribute("ondrop", "drop(event)");
+        wrapper.setAttribute("ondragover", "allowDrop(event)");
+        wrapper.setAttribute("data-combo-number", combo_id);
 
-        combo_id = parseInt(ev.target.getAttribute("data-combo-number"));
-
-        //gonna set the combo  div's id the combo number 
-        //gonna implement the drop function of card state here
-        //gonna update the combo right away.
-        //add new drag event: cut the element
     } 
-    else if (smaller_img.getAttribute("data-type")=="action"){
-        wrapper.setAttribute("data-type", "action-wrapper");
-        wrapper.appendChild(smaller_img);
+    else if (smaller_img.getAttribute("data-type")=="combo-action-wrapper"||smaller_img.getAttribute("data-type")=="action-wrapper"){
+        wrapper = smaller_img;
+        wrapper.setAttribute("data-combo-number", combo_id);
     }
+    // else if (smaller_img.getAttribute("data-type") == "state" && ev.target.getAttribute("class") == "combo_imgs"){
+    //     wrapper = smaller_img;
+    // }
+    
 
-    ev.target.appendChild(wrapper);
+    
+    // NOT DONE YET
+    i = 0;
+    flag = 0;
+    x = 0;
 
+    if (ev.target.getAttribute("class") == "row combo-row"){
+        for (i = 0; i<ev.target.children.length; i++){
+            rect = ev.target.children[i].getBoundingClientRect();
+            if (rect.bottom>ev.clientY && rect.right>ev.clientX && rect.top<ev.clientY && rect.left<ev.clientX){
+                flag = 1;
+                x = i;
+                break;
+            }
+        } 
+        ev.target.appendChild(wrapper);
+    }
+    
+    else if (ev.target.getAttribute("class") == "combo-action-wrapper"){
+        for (i = 0; i<ev.target.parentNode.children.length; i++){
+            rect = ev.target.parentNode.children[i].getBoundingClientRect();
+            if (rect.bottom>ev.clientY && rect.right>ev.clientX && rect.top<ev.clientY && rect.left<ev.clientX){
+                if (ev.clientX>(rect.left+rect.right)/2)
+                    flag = 1;
+                else flag = 0;
+                x = i;
+                break;
+            }
+        }
+        if (flag == 0)
+            ev.target.parentNode.insertBefore(wrapper, ev.target.parentNode.children[x]); 
+        else ev.target.parentNode.insertBefore(wrapper, ev.target.parentNode.children[x].nextSibling);
+    }
+    else if (ev.target.getAttribute("class") == "combo_imgs" &&smaller_img.getAttribute("data-type") == "state"){
+        small_flag = 0;
+        Array.from(ev.target.parentNode.children).forEach(element=>{
+            if (smaller_img.getAttribute("id")==element.getAttribute("id")) small_flag = 1;
+        });
+        if (small_flag == 0)
+            ev.target.parentNode.appendChild(smaller_img);
+    }
 
     // save to storage here
-    if (smaller_img.getAttribute("data-type")=="card"){
-        all_actions = document.querySelectorAll("#"+ev.target.id+">.combo-action-wrapper");
-        console.log(all_actions[0].children[0].src);
-    }
+    save_to_storage(combo_id);
   }
+
+function save_to_storage(combo_id){
+    console.log(combo_id);
+}
+
+function test_storage(){
+    res = getList("deck_list");
+    console.log(res);
+
+}
 function comboListPageStartup(){
     res = getList("deck_list");
     if (!res){
