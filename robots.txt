@@ -47,7 +47,7 @@ User-agent: Lycos
 User-agent: Mail.Ru
 User-agent: Mediapartners-Google
 User-agent: MojeekBot
-User-agent: msnbot
+
 User-agent: msnbot-media
 User-agent: OrangeBot
 User-agent: Pinterest
