@@ -27,24 +27,44 @@ function getList(name){
     var retrieveList = localStorage.getItem(name);
     return JSON.parse(retrieveList);
 }
-random_card = {};
-function get_card_info(id){
+// random_card = {};
+// function get_card_info(id){
+//     myurl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + id;
+//     random_card = $.getJSON(myurl, function(data) {
+//         // document.getElementsByClassName("test_place")[0].innerHTML=data.data;
+//         // cards_list = document.getElementsByClassName('hidden-value')[0];
+//         // cards_list.innerHTML = JSON.stringify(data.data[0]);
+//     });
+//     // cards_list = document.getElementsByClassName('hidden-value')[0];
+//     return ;
+// }
+
+// async function get_card_info(id) {
+//     myurl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + id;
+//     // The await keyword saves us from having to write a .then() block.
+//     let json = await axios.get(myurl);
+
+//     // The result of the GET request is available in the json variable.
+//     // We return it just like in a regular synchronous function.
+//     // console.log(json);
+//     return json.data.data[0];
+// }
+
+function get_card_info(id) {
     myurl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + id;
-    $.getJSON(myurl, function(data) {
-        // document.getElementsByClassName("test_place")[0].innerHTML=data.data;
-        cards_list = document.getElementsByClassName('card-result')[0];
-        cards_list.innerHTML ='';
-        random_card = data.data[0];
-    });
-    return random_card;
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", myurl, false );
+    xmlHttp.send( null );
+    // console.log(JSON.parse(xmlHttp.responseText).data[0]);
+    return JSON.parse(xmlHttp.responseText).data[0];
 }
 
 function addCombo(name, note){
     
     deck_id = getDeckID(); 
     res = getList("deck_list");
-    console.log(res.decks[deck_id].combo_list)
-    console.log("im here");
+    // console.log(res.decks[deck_id].combo_list)
+    // console.log("im here");
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -75,9 +95,9 @@ function comboShow(){
 //     </div>
 
 // </div>  
-
     deck_id = getDeckID();    
     res = getList("deck_list");
+    console.log(res);
     i = res.decks[deck_id].combo_list.length-1;
     res.decks[deck_id].combo_list.forEach(element=>{
         combo_wrap = document.createElement('div');
@@ -96,6 +116,19 @@ function comboShow(){
         combo_note.setAttribute("contenteditable", "true");
         combo_note.innerHTML = res.decks[deck_id].combo_list[i].combo_note;
 
+        col_10 = document.createElement('div');
+        col_10.setAttribute("class", "col-11");
+        col_2 = document.createElement('div');
+        col_2.setAttribute("class", "col-1");
+
+        combo_del = document.createElement('button');
+        combo_del.setAttribute("class", "btn btn-danger btn-sm float-left combo-delete");
+        combo_del.setAttribute("value", i);
+        combo_del.setAttribute("onclick", "deleteCombo(this.getAttribute('value'))");
+        combo_del_i = document.createElement('i');
+        combo_del_i.setAttribute("class", "fa fa-trash");
+        combo_del.appendChild(combo_del_i);
+
         combo_row = document.createElement('div');
         combo_row.setAttribute("class", "row combo-row");
         combo_row.setAttribute("id", "combo"+i);
@@ -103,7 +136,8 @@ function comboShow(){
         combo_row.setAttribute("ondrop", "drop(event)");
         combo_row.setAttribute("ondragover", "allowDrop(event)");
 
-        
+        uti_row = document.createElement('div');
+        uti_row.setAttribute("class", "row");
         
 
         res.decks[deck_id].combo_list[i].combo.forEach(el=>{
@@ -118,7 +152,7 @@ function comboShow(){
             if (el.includes("?")){
                 parsed = cardStateParser(el);
                 card = get_card_info(parsed["id"]);
-
+    
                 new_img = document.createElement('img');
                 new_img.setAttribute('src', card.card_images[0].image_url);
                 new_img.setAttribute('id', card["id"]);
@@ -132,6 +166,8 @@ function comboShow(){
                 new_img.setAttribute('oncontextmenu', "removeRow(this);return false;");
 
                 combo_action_wrapper.appendChild(new_img);
+                // console.log(parsed);
+                if (parsed["states"] && parsed["states"][0]!="")
                 parsed["states"].forEach(e=>{
                     new_state = document.createElement('img');
                     new_state.setAttribute('src', "assets/opp/" + e + ".png");
@@ -152,24 +188,38 @@ function comboShow(){
                 combo_action_wrapper.setAttribute("id", "action-wrapper-sample");
 
                 passage = document.createElement('p');
-                passage.setAttribute("class", "action-text");
+                passage.setAttribute("class", "action-text combo-action");
                 passage.setAttribute("contenteditable", "true");
                 passage.innerHTML = el;
                 combo_action_wrapper.appendChild(passage);
             }
             combo_action_wrapper.setAttribute("data-combo-number", i);
-            combo_row.appendChild(combo_action_wrapper);
+            combo_action_wrapper.setAttribute("oncontextmenu", "combo_id = this.getAttribute('data-combo-number'); this.remove();  save_to_storage(combo_id);return false;");
+            if (combo_action_wrapper.innerHTML!="") combo_row.appendChild(combo_action_wrapper);
             
         });
-        combo_wrap.appendChild(combo_name);
-        combo_wrap.appendChild(combo_note);
+        // combo_wrap.appendChild(combo_name);
+        // combo_wrap.appendChild(combo_note);
+
+        col_10.appendChild(combo_name);
+        col_10.appendChild(combo_note);
+        col_2.appendChild(combo_del);
+        uti_row.appendChild(col_10);
+        uti_row.appendChild(col_2);
+        combo_wrap.appendChild(uti_row);
         combo_wrap.appendChild(combo_row);
         document.getElementsByClassName("combos")[0].appendChild(combo_wrap);
         i--;
     });
 
 }
-
+function deleteCombo(combo_id){
+    deck_id = getDeckID();
+    temp = getList("deck_list");
+    temp.decks[deck_id].combo_list = temp.decks[deck_id].combo_list.filter(item => item != temp.decks[deck_id].combo_list[parseInt(combo_id)]);
+    storeList("deck_list", temp);
+    location.reload();
+}
 function getDeckID(){
     const params = new URLSearchParams(window.location.search);
     return parseInt(params.get('id'));
@@ -180,6 +230,7 @@ function cardStateParser(card_state){
         "id" : card_states[0],
         "states": card_states[1].split('-')
     }
+    // console.log(card);
     return card;
 }
 
@@ -411,7 +462,7 @@ function allowDrop(ev) {
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
   }
-  
+randotron = 0;
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
@@ -420,10 +471,11 @@ function drop(ev) {
     smaller_img.setAttribute("oncontextmenu", "removeRow(this);return false;");
     
     combo_id = parseInt(ev.target.getAttribute("data-combo-number"));
+    if (isNaN(combo_id)) combo_id = parseInt(ev.target.parentNode.getAttribute("data-combo-number"));
     smaller_img.setAttribute("data-combo-number", combo_id);
     wrapper =document.createElement('div');
     wrapper.setAttribute("class", "combo-action-wrapper");
-    wrapper.setAttribute("oncontextmenu", "this.remove();return false;");
+    
 
     if (smaller_img.getAttribute("data-type")=="card"){
         smaller_img.setAttribute('class', "combo_imgs");
@@ -434,15 +486,21 @@ function drop(ev) {
         wrapper.setAttribute("data-combo-number", combo_id);
 
     } 
-    else if (smaller_img.getAttribute("data-type")=="combo-action-wrapper"||smaller_img.getAttribute("data-type")=="action-wrapper"){
+    else if (smaller_img.getAttribute("data-type")=="combo-action-wrapper"){
         wrapper = smaller_img;
         wrapper.setAttribute("data-combo-number", combo_id);
+    }
+    else if (smaller_img.getAttribute("data-type")=="action-wrapper"){
+        wrapper = smaller_img;
+        wrapper.setAttribute("data-combo-number", combo_id);
+        wrapper.firstChild.setAttribute("contenteditable","true");
+        
     }
     // else if (smaller_img.getAttribute("data-type") == "state" && ev.target.getAttribute("class") == "combo_imgs"){
     //     wrapper = smaller_img;
     // }
     
-
+    wrapper.setAttribute("oncontextmenu", "combo_id = this.getAttribute('combo-data-type'); this.remove(); save_to_storage(combo_id);return false;");
     
     // NOT DONE YET
     i = 0;
@@ -450,18 +508,19 @@ function drop(ev) {
     x = 0;
 
     if (ev.target.getAttribute("class") == "row combo-row"){
-        for (i = 0; i<ev.target.children.length; i++){
-            rect = ev.target.children[i].getBoundingClientRect();
-            if (rect.bottom>ev.clientY && rect.right>ev.clientX && rect.top<ev.clientY && rect.left<ev.clientX){
-                flag = 1;
-                x = i;
-                break;
-            }
-        } 
+        // for (i = 0; i<ev.target.children.length; i++){
+        //     rect = ev.target.children[i].getBoundingClientRect();
+        //     if (rect.bottom>ev.clientY && rect.right>ev.clientX && rect.top<ev.clientY && rect.left<ev.clientX){
+        //         flag = 1;
+        //         x = i;
+        //         break;
+        //     }
+        // } 
         ev.target.appendChild(wrapper);
     }
     
     else if (ev.target.getAttribute("class") == "combo-action-wrapper"){
+        // console.log(ev.target.getAttribute("class") );
         for (i = 0; i<ev.target.parentNode.children.length; i++){
             rect = ev.target.parentNode.children[i].getBoundingClientRect();
             if (rect.bottom>ev.clientY && rect.right>ev.clientX && rect.top<ev.clientY && rect.left<ev.clientX){
@@ -472,9 +531,19 @@ function drop(ev) {
                 break;
             }
         }
-        if (flag == 0)
-            ev.target.parentNode.insertBefore(wrapper, ev.target.parentNode.children[x]); 
-        else ev.target.parentNode.insertBefore(wrapper, ev.target.parentNode.children[x].nextSibling);
+        if (randotron ==0){
+            if (flag == 0) {
+                ev.target.parentNode.insertBefore(wrapper, ev.target.parentNode.children[x]);
+                // console.log("hmm" );
+            } 
+            else {
+                ev.target.parentNode.insertBefore(wrapper, ev.target.parentNode.children[x].nextSibling);
+                // console.log("hmmmmmm" );
+            }
+            randotron =1;
+        }
+        else randotron = 0;
+        
     }
     else if (ev.target.getAttribute("class") == "combo_imgs" &&smaller_img.getAttribute("data-type") == "state"){
         small_flag = 0;
@@ -491,6 +560,46 @@ function drop(ev) {
 
 function save_to_storage(combo_id){
     console.log(combo_id);
+    deck_id = getDeckID();
+    temp = document.getElementById("combo"+combo_id);
+    new_combo = [];
+    if (temp.children!=null){
+        Array.from(temp.children).forEach(element=>{
+            if (element.getAttribute("class") == "combo-action-wrapper" && element.innerHTML!=""){
+                temp_card =""
+                if (element.getAttribute("data-type")=="card-wrapper"){
+                    temp_card += element.firstChild.id + "?";
+                    if (element.children.length>1){
+                        for (i = 1; i<element.children.length;i++){
+                            if (i==element.children.length-1) temp_card+=element.children[i].id;
+                            else temp_card += element.children[i].id + "-";
+                        }
+                    } 
+                } 
+                else if (element.getAttribute("data-type")=="action-wrapper"){
+                    if (element.firstChild.innerHTML !=""){
+                        temp_card+=element.firstChild.innerHTML;
+                    }
+                }
+                new_combo.push(temp_card);
+                new_combo.push("|");
+            }
+        });
+        if (new_combo[new_combo.length-1]=="|") new_combo.pop();
+    }
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    res = getList("deck_list");
+    res.decks[deck_id].date_modified = dateTime;
+    res.decks[deck_id].combo_list[combo_id].combo_name = document.getElementById("combo-name"+combo_id).innerHTML;
+    res.decks[deck_id].combo_list[combo_id].combo_note = document.getElementById("note"+combo_id).innerHTML;
+    res.decks[deck_id].combo_list[combo_id].combo = new_combo;
+
+    storeList("deck_list", res);
+    test_storage();
 }
 
 function test_storage(){

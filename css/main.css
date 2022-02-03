@@ -47,9 +47,10 @@
   }
 
   .title-col{
-    border-style: dashed;
+    /* border-style: dashed; */
     overflow: hidden;
     /* height: vh; */
+    /* margin-left: 5%; */
   }
   .attr-col{
     height: 5vh;
@@ -68,7 +69,9 @@
     font-size: 3vh;
     background-color: brown;
   }
-
+  .btn{
+    margin-top: 2%;
+  }
   .combo-row{
     min-height: 12vh;
     background-color: cadetblue;
@@ -76,6 +79,7 @@
     margin-left: 1vw;
     margin-right: 1vw;
     flex-wrap: wrap;
+    border-radius: 50px;
   }
 
   .search-results{
@@ -89,6 +93,7 @@
     background-color: cyan;
     margin-top: 1vh;
     margin-bottom: 1vh;
+    border-radius: 10px;
   }
   .combo_imgs{
     height: 10vh;
@@ -96,6 +101,7 @@
     margin-bottom: auto;
     margin-right: 3vh;
     margin-left: 3vh;
+    
   }
 
 
@@ -106,6 +112,7 @@
   padding: 16px;
   font-size: 16px;
   border: none;
+  border-radius: 15%;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -141,11 +148,26 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+
+
 .action-wrapper{
   background-color: brown;
   border: black;
 }
+.combo-action-wrapper[data-type=action-wrapper]{
+  margin-top: 7%;
+}
+.combo-action-wrapper{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.combo-name,.combo-note{
+  margin-left: 2%;
+}
 
+.card-states{
+  height: 2vh;
+}
   #card-detail{
     height: 25vh;
   }

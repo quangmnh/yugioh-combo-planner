@@ -19,6 +19,7 @@
   <link href="css/main.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,7 @@
         <div class="col-12 text-center">
             <br>
         <h1>Yu-gi-oh!&#10084;Combo&#10084;Planner</h1>
-        <p class="lead">Buy me a &#9749; at <a href="https://playerduo.com/funiethehybrid">PlayerDuo</a> or &#129309; in this project at <a href="https://github.com/quangmnh/yugioh-combo-planner">Github</a></p>
+        <p class="lead">Buy me a &#9749; at <a href="https://playerduo.com/funiethehybrid">PlayerDuo</a> or &#129309; me in this project at <a href="https://github.com/quangmnh/yugioh-combo-planner">Github</a></p>
         <!-- <p class="lead">	&#10084;	&#10084;	&#10084;</p> -->
         </div>
     </div>
@@ -94,7 +95,7 @@
                 <p id="card-desc"></p>
             </div>
             <div class="col-7 combos scroll-collumn">
-                <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#newComboListModal">Add a new Combo List</button>
+                <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#newComboListModal">Add a new Combo</button>
                 <div class="modal fade" id="newComboListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -134,11 +135,10 @@
                 
                 </div>
 <div class="dropdown">
-    <button class="dropbtn">Dropdown</button>
+    <button class="dropbtn">Others</button>
     <div class="dropdown-content">
-        <div id = "action-wrapper-sample" class="combo-action-wrapper"ondragstart = "drag(event)" draggable ="true" data-type="action-wrapper"><p class="action-text" contenteditable="true">Sample text</p></div>
-        
-
+        <div id = "action-wrapper-sample" class="combo-action-wrapper"ondragstart = "drag(event)" draggable ="true" data-type="action-wrapper"><p class="action-text">Sample text</p></div>
+    
         <img class = "card-states" src="assets/opp/banish_opp.png" id = "banish_opp" data-type = "state" data-card ="banish_opp" ondragstart = "drag(event)" draggable ="true">
         <img class = "card-states" src="assets/opp/deck_opp.png" id = "deck_opp" data-type = "state" data-card ="deck_opp" ondragstart = "drag(event)" draggable ="true">
         <img class = "card-states" src="assets/opp/extra_opp.png" id = "extra_opp" data-type = "state" data-card ="extra_opp" ondragstart = "drag(event)" draggable ="true">
