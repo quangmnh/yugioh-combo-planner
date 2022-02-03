@@ -16,11 +16,11 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
 
 # Project History
 
-## Beta 1.1.0
+## Beta 1.7.0
 - SEO:??? What tf is this shite?? is it the Google Analytics Object???
 - Color rework: Hmmmmmmmmmmmmm
 
-## Prototype 1.0.5
+## Prototype 1.6.2
 - ~~Do some figma for the views~~
   https://www.figma.com/file/IX30INQBDdxNTEy1rqgDi3/Untitled?node-id=0%3A1
   
