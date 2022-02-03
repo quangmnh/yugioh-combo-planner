@@ -261,7 +261,7 @@ function addComboList(name){
 }
 
 function openComboPlanner(id){
-    new_window = window.open("combo-planner.html?id="+id);
+    new_window = window.open("combo-planner.html?id="+id,"_self");
     new_window.ivalue = i;
 }
 

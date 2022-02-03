@@ -1,6 +1,12 @@
+body{
+  background-image: url('../assets/bg.png');
+  color: white;
+}
+
 .cell-combo-list{
     background-color: aqua;
     margin: auto;
+    color: black;
     font-size: 150%;
 }
 
@@ -11,6 +17,9 @@
   height: 80vh;
   margin: 0 auto;
 }
+
+
+
 /* Style buttons */
 .btn-delete {
     background-color: DodgerBlue; /* Blue background */
@@ -28,22 +37,23 @@
   }
 
   .card-show{
-    background-color: burlywood;
+    background-color: #194350;
     height: 80vh;
   }
 
   .card-search{
-    background-color: blue;
+    background-color: #194350;
     height: 80vh;
   }
 
   .combos{
-    background-color: blueviolet;
+    background-color: #9DBEB9;
     height: 80vh;
   }
 
   .scroll-collumn{
     overflow-y: auto;
+    border-radius: 20px;
   }
 
   .title-col{
@@ -78,6 +88,7 @@
     margin-top: 2vh;
     margin-left: 1vw;
     margin-right: 1vw;
+    /* margin-bottom: 1vh; */
     flex-wrap: wrap;
     border-radius: 50px;
   }
@@ -90,17 +101,18 @@
   }
   
   .combo-wrap{
-    background-color: cyan;
+    background-color: #FF8882;
+    color: black;
     margin-top: 1vh;
     margin-bottom: 1vh;
     border-radius: 10px;
+
   }
   .combo_imgs{
     height: 10vh;
     margin-top: auto;
     margin-bottom: auto;
-    margin-right: 3vh;
-    margin-left: 3vh;
+    
     
   }
 
@@ -109,7 +121,7 @@
 .dropbtn {
   background-color: #04AA6D;
   color: white;
-  padding: 16px;
+  /* padding: 16px; */
   font-size: 16px;
   border: none;
   border-radius: 15%;
@@ -119,6 +131,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  color: black;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -148,7 +161,10 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-
+.action-text{
+  background-color: #FFAAA5;
+  border-radius: 5px;
+}
 
 .action-wrapper{
   background-color: brown;
@@ -160,11 +176,24 @@
 .combo-action-wrapper{
   margin-top: 2%;
   margin-bottom: 2%;
+  margin-right: 3vh;
+  margin-left: 3vh;
+  /* max-width: 6vw; */
+}
+.combo-action{
+  background-color: #2d3067;
+  font-size: 2vh;
+  color: white;
+  /* margin-bottom: 1vh; */
+  margin-top: -2vh;
 }
 .combo-name,.combo-note{
   margin-left: 2%;
 }
 
+.combo-name{
+font-size: 3vh;
+}
 .card-states{
   height: 2vh;
 }
@@ -203,6 +232,7 @@
   #detail-row-1-col-2,#detail-row-2-col-2,#detail-row-3-col-2,#detail-row-4-col-2{
     text-align: right;
   }
+  
   
 
   #card-title {

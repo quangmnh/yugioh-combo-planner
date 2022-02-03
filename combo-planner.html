@@ -20,11 +20,20 @@
   <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B2ZG8GS6KH"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-B2ZG8GS6KH');
+</script>
 </head>
 <body>
 
     <!-- <div class="test_place"></div> -->
-    
+
         
     <!-- <div class="site-container"> -->
     <div class="container">
@@ -94,9 +103,10 @@
                 </div>
                 <p id="card-desc"></p>
             </div>
+            <!-- <div class="col-1"></div> -->
             <div class="col-7 combos scroll-collumn">
                 <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#newComboListModal">Add a new Combo</button>
-                <div class="modal fade" id="newComboListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="newComboListModal" style= "color:black;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -126,6 +136,7 @@
                 </div> -->
 
             </div>
+            <!-- <div class="col-1"></div> -->
             <div class="col-2 card-search scroll-collumn">
                 <br>
                 <div class="input-group rounded">
@@ -221,14 +232,23 @@
 
     <script src="js/main.js"></script>
     <script>comboShow()</script>
+    <script>
+        document.getElementsByClassName("action-text combo-action")[0].addEventListener("input", function(event) {
+            // console.log(event.target.parentNode.getAttribute("data-combo-number"));
+            save_to_storage(event.target.parentNode.getAttribute("data-combo-number"));
+        }, false);
+    </script>
+<!-- Google Analytics -->
     <!-- <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-66576837-1', 'auto');
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        
+        ga('create', 'UA-XXXXX-Y', 'auto');
         ga('send', 'pageview');
     </script> -->
+    <!-- End Google Analytics -->
 
 </body>
 </html>
