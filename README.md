@@ -16,7 +16,11 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
 
 # Project History
 
-## Prototype
+## Beta 1.7.0
+- SEO:??? What tf is this shite?? is it the Google Analytics Object???
+- Color rework: Hmmmmmmmmmmmmm
+
+## Prototype 1.6.2
 - ~~Do some figma for the views~~
   https://www.figma.com/file/IX30INQBDdxNTEy1rqgDi3/Untitled?node-id=0%3A1
   
@@ -53,4 +57,4 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
 <!-- <img src="/assets/combolist_preview.png" width="686" height="346"> -->
 - Implement the **Combo planner view**
    + ~~**Card search engine**: Kinda hard, but I can copycat the Master Duel's one (It is the simplest thing compared to these YGOPro clones out there, what a joke)~~ Working version, gonna improve later.
-   + **Combo planning flow**: The main dish ofc, ~~I might need to create some assets myself~~.
+   + ~~**Combo planning flow**: The main dish ofc, I might need to create some assets myself~~.
