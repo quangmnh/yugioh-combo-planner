@@ -20,6 +20,7 @@ and YOU of course, for choosing to use this shitty app, or if you can add the co
 - SEO:??? What tf is this shite?? is it the Google Analytics Object???
 - Color rework: Hmmmmmmmmmmmmm
 - These SEO things seem cool, have to try them out especially the addthis tipjar or wahtever
+- These jekyll thing look cool too, wonder how to use them.
 ## Prototype 1.6.2
 - ~~Do some figma for the views~~
   https://www.figma.com/file/IX30INQBDdxNTEy1rqgDi3/Untitled?node-id=0%3A1
