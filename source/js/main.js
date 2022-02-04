@@ -612,11 +612,6 @@ function comboListPageStartup(){
     if (!res){
         temp = {
             "decks": [
-                {
-                    "combo_name":"xxxxsuckyyydick",
-                    "combo":["16162312133?faceup-atk-field","attack","1561656123?facedown-def-field","|","6511233331?hand","activate"],
-                    "result":["16162312133?graveyard", "6511233331?graveyard"]
-                    }
             ]
         };
         storeList("deck_list", temp);
