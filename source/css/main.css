@@ -164,8 +164,9 @@ body{
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 .action-text{
-  background-color: #FFAAA5;
+  background-color: #2d3067;
   border-radius: 5px;
+  color: white;
 }
 
 .action-wrapper{

@@ -207,7 +207,7 @@ function comboShow(){
         // combo_wrap.appendChild(combo_note);
 
         col_10.appendChild(combo_name);
-        col_10.appendChild(combo_note);
+        // col_10.appendChild(combo_note);
         col_2.appendChild(combo_del);
         uti_row.appendChild(col_10);
         uti_row.appendChild(col_2);
