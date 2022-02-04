@@ -114,6 +114,7 @@ function comboShow(){
         combo_note.setAttribute("class", "combo-note");
         combo_note.setAttribute("id", "note"+i);
         combo_note.setAttribute("contenteditable", "true");
+        combo_note.hidden = true;
         combo_note.innerHTML = res.decks[deck_id].combo_list[i].combo_note;
 
         col_10 = document.createElement('div');
