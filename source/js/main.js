@@ -103,13 +103,17 @@ function comboShow(){
         combo_wrap = document.createElement('div');
         combo_wrap.setAttribute("class", "combo-wrap");
         combo_wrap.setAttribute("id", "wrap"+i);
-        
+        combo_wrap.setAttribute("data-combo-number", i);
+
         combo_name = document.createElement('div');
         combo_name.setAttribute("class", "combo-name");
         combo_name.setAttribute("id", "combo-name"+i);
         combo_name.setAttribute("contenteditable", "true");
         combo_name.innerHTML = res.decks[deck_id].combo_list[i].combo_name;
-
+        combo_name.addEventListener("input", function(event) {
+            // console.log(event.target.parentNode.getAttribute("data-combo-number"));
+            save_to_storage(event.target.parentNode.parentNode.parentNode.getAttribute("data-combo-number"));
+        }, false);
         // combo_note = document.createElement('div');
         // combo_note.setAttribute("class", "combo-note");
         // combo_note.setAttribute("id", "note"+i);
@@ -564,7 +568,7 @@ function drop(ev) {
   }
 
 function save_to_storage(combo_id){
-    console.log(combo_id);
+    // console.log(combo_id);
     deck_id = getDeckID();
     temp = document.getElementById("combo"+combo_id);
     new_combo = [];
