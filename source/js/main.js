@@ -110,12 +110,12 @@ function comboShow(){
         combo_name.setAttribute("contenteditable", "true");
         combo_name.innerHTML = res.decks[deck_id].combo_list[i].combo_name;
 
-        combo_note = document.createElement('div');
-        combo_note.setAttribute("class", "combo-note");
-        combo_note.setAttribute("id", "note"+i);
-        combo_note.setAttribute("contenteditable", "true");
-        combo_note.hidden = true;
-        combo_note.innerHTML = res.decks[deck_id].combo_list[i].combo_note;
+        // combo_note = document.createElement('div');
+        // combo_note.setAttribute("class", "combo-note");
+        // combo_note.setAttribute("id", "note"+i);
+        // combo_note.setAttribute("contenteditable", "true");
+        // combo_note.hidden = true;
+        // combo_note.innerHTML = res.decks[deck_id].combo_list[i].combo_note;
 
         col_10 = document.createElement('div');
         col_10.setAttribute("class", "col-11");
@@ -192,6 +192,10 @@ function comboShow(){
                 passage.setAttribute("class", "action-text combo-action");
                 passage.setAttribute("contenteditable", "true");
                 passage.innerHTML = el;
+                passage.addEventListener("input", function(event) {
+                    // console.log(event.target.parentNode.getAttribute("data-combo-number"));
+                    save_to_storage(event.target.parentNode.getAttribute("data-combo-number"));
+                }, false);
                 combo_action_wrapper.appendChild(passage);
             }
             combo_action_wrapper.setAttribute("data-combo-number", i);
@@ -596,7 +600,7 @@ function save_to_storage(combo_id){
     res = getList("deck_list");
     res.decks[deck_id].date_modified = dateTime;
     res.decks[deck_id].combo_list[combo_id].combo_name = document.getElementById("combo-name"+combo_id).innerHTML;
-    res.decks[deck_id].combo_list[combo_id].combo_note = document.getElementById("note"+combo_id).innerHTML;
+    // res.decks[deck_id].combo_list[combo_id].combo_note = document.getElementById("note"+combo_id).innerHTML;
     res.decks[deck_id].combo_list[combo_id].combo = new_combo;
 
     storeList("deck_list", res);
