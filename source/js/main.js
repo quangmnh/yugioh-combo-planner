@@ -621,6 +621,7 @@ function comboListPageStartup(){
     i = 0;
     index = res.decks.length-1;
     // test_div = document.getElementsByClassName("test_place")[0];
+    if (res.decks.length>0)
     res.decks.forEach(element => {
         // test_div.innerHTML=i/4;
         if (i%4 == 0){
