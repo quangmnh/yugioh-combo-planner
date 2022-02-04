@@ -578,7 +578,7 @@ function save_to_storage(combo_id){
                 } 
                 else if (element.getAttribute("data-type")=="action-wrapper"){
                     if (element.firstChild.innerHTML !=""){
-                        temp_card+=element.firstChild.innerHTML;
+                        temp_card+=element.firstChild.innerHTML.replace('?', '');;
                     }
                 }
                 new_combo.push(temp_card);
