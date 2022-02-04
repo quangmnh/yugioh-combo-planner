@@ -18,7 +18,9 @@ body{
   margin: 0 auto;
 }
 
-
+.cell-combo-list{
+  border-radius: 5px;
+}
 
 /* Style buttons */
 .btn-delete {

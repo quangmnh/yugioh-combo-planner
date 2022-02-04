@@ -195,8 +195,7 @@
                             const input = document.getElementById('input')
                             myurl = "https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=" + encodeURIComponent(input.value);
                             // window.open("https://www.google.com/search?q="+myurl);
-                            // console.log(input.value);
-                            
+                            console.log(myurl);
                             $.getJSON(myurl, function(data) {
                                 // document.getElementsByClassName("test_place")[0].innerHTML=data.data;
                                 cards_list = document.getElementsByClassName('card-result')[0];
